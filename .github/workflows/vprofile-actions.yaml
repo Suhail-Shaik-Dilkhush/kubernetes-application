@@ -18,13 +18,13 @@ jobs:
       - name: installing java 11 for sonar qube
         uses: actions/setup-java@v4
         with:
-          java-version: "17"
+          java-version: "11"
           distribution: "temurin"
 
       - name: setting up sonar
         uses: SylvainDumas/setup-sonar-scanner@v1
         with:
-          version: "7.x"
+          version: "4.6.x"
 
       - name: Analzing code files with sonarqube SylvainDumas/setup-sonar-scanner
         run: |
