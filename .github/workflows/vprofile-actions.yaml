@@ -30,8 +30,20 @@ jobs:
       - name: Analzing code files with sonarqube SylvainDumas/setup-sonar-scanner
         run: |
           sonar-scanner \
-            -Dsonar.projectKey= ${{ secrets.SONAR_PROJECT_KEY }}
-            -Dsonar.sources=src/
-            -Dsonar.host.url=${{ secrets.SONAR_HOST }}
-            -Dsonar.organizatoin=${{ secrets.SONAR_ORG }}
-            -Dsonar.token=${{ secrets.SONAR_TOKEN}}
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+            -Dsonar.sources=src/ \
+            -Dsonar.host.url=${{ secrets.SONAR_HOST }} \
+            -Dsonar.organization=${{ secrets.SONAR_ORG }} \
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
+            -Dsonar.junit.reportsPath=target/surefire-reports/ \
+            -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+            -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
+            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account
+
+      - name: checking quality gate status
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        with:
+          pollingTimeoutSec: 600
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST }}
