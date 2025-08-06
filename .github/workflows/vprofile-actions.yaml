@@ -1,0 +1,37 @@
+name: deploying vprofile application on EKS
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout git
+        uses: actions/checkout@v2
+
+      - name: run tests
+        run: mvn test
+
+      - name: collect the checkstyle report
+        run: mvn checkstyle:checkstyle
+
+      - name: installing java 11 for sonar qube
+        run: actions/setup-java@v4
+        with:
+          java-version: "11"
+          distribution: "temurin"
+
+      - name: setting up sonar
+        uses: SylvainDumas/setup-sonar-scanner@v1
+
+      - name: Analzing code files with sonarqube SylvainDumas/setup-sonar-scanner
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey= ${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.sources=src/
+            -Dsonar.host.url=${{ secrets.SONAR_HOST }}
+            -Dsonar.organizatoin=${{ secrets.SONAR_ORG }}
+            -Dsonar.token=${{ secrets.SONAR_TOKEN}}
