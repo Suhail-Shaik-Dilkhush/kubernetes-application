@@ -24,7 +24,7 @@ jobs:
       - name: setting up sonar
         uses: SylvainDumas/setup-sonar-scanner@v1
         with:
-          version: "4.8.x"
+          version: "4.7.0.2747"
 
       - name: Analzing code files with sonarqube SylvainDumas/setup-sonar-scanner
         run: |
