@@ -23,6 +23,8 @@ jobs:
 
       - name: setting up sonar
         uses: SylvainDumas/setup-sonar-scanner@v1
+        with:
+          version: "7.x"
 
       - name: Analzing code files with sonarqube SylvainDumas/setup-sonar-scanner
         run: |
