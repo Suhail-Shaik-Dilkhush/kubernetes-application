@@ -18,7 +18,7 @@ jobs:
       - name: installing java 11 for sonar qube
         uses: actions/setup-java@v4
         with:
-          java-version: "17"
+          java-version: "11"
           distribution: "temurin"
 
       - name: setting up sonar
