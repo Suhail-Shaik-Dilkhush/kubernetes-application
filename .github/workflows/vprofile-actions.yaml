@@ -12,8 +12,8 @@ jobs:
       - name: run tests
         run: mvn test
 
-      - name: Building and caching with Maven
-        run: mvn clean compile test-compile test package
+      - name: Building the code using maven
+        run: mvn clean install -DskipTests
 
       - name: collect the checkstyle report
         run: mvn checkstyle:checkstyle
