@@ -58,7 +58,7 @@ jobs:
         with:
           image: vprofile-tomcat
           tags: latest, ${{ github.run_number }}
-          registry: 906314669249.dkr.ecr.eu-north-1.amazonaws.com/vprofile/vpro-images
+          registry: 906314669249.dkr.ecr.eu-north-1.amazonaws.com
           dockerfile: ./Dockerfile
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
