@@ -53,4 +53,4 @@ jobs:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: eu-north-1
-          image: 906314669249.dkr.ecr.eu-north-1.amazonaws.com/vprofile/vpro-images:latest-${{github.run_number}}
+          local-image: ./Dockerfile
