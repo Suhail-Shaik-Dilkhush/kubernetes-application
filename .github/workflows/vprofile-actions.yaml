@@ -26,7 +26,7 @@ jobs:
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ secrets.SONAR_ORG }}
             -Dsonar.token=${{ secrets.SONAR_TOKEN }}
-            -Dsonar.binaries=target/classes
+            -Dsonar.java.binaries=target/classes
             -Dsonar.junit.reportsPath=target/surefire-reports/
             -Dsonar.jacoco.reportsPath=target/jacoco.exec
             -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
