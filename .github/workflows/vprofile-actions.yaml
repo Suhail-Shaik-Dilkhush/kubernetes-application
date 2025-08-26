@@ -54,3 +54,4 @@ jobs:
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: eu-north-1
           local-image: ./Dockerfile
+          image: latest:${{ github.run_number }}
