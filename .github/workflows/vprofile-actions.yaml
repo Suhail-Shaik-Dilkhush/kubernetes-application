@@ -56,8 +56,8 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v6
         name: Build & push Docker image
         with:
-          image: vprofile/vpro-images/vpro-tomcat
-          tags: latest-${{ github.run_number }}
+          image: vprofile/vpro-images
+          tags: vprofile-tomcat-latest-${{ github.run_number }}
           registry: 906314669249.dkr.ecr.eu-north-1.amazonaws.com
           dockerfile: ./Dockerfile
         env:
