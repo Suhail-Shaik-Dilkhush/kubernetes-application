@@ -43,15 +43,23 @@ jobs:
     runs-on: ubuntu-latest
     env:
       repository: vprofile/vpro-images
+      aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
     steps:
       - name: checkout git
         uses: actions/checkout@v2
 
-      - name: Pushing docker image to ECR
-        uses: jwalton/gh-ecr-push@v2
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
         with:
-          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          region: eu-north-1
-          image: latest:${{ github.run_number }}
-          context: .
+          registry-type: private
+
+      - name: Build, tag, and push docker image to Amazon ECR
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: ${{ env.repository }}
+          IMAGE_TAG: latest:${{ github.run_number }}
+        run: |
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
