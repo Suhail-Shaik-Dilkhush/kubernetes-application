@@ -45,6 +45,7 @@ jobs:
       repository: vprofile/vpro-images
       aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws_region: eu-north-1
     steps:
       - name: checkout git
         uses: actions/checkout@v2
@@ -60,7 +61,6 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ env.repository }}
           IMAGE_TAG: latest:${{ github.run_number }}
-          REGION: eu-north-1
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
