@@ -12,6 +12,9 @@ jobs:
       - name: run tests
         run: mvn test
 
+      - name: Building and caching with Maven
+        run: mvn clean compile test-compile test package
+
       - name: collect the checkstyle report
         run: mvn checkstyle:checkstyle
 
@@ -23,6 +26,7 @@ jobs:
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ secrets.SONAR_ORG }}
             -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.binaries=target/classes
             -Dsonar.junit.reportsPath=target/surefire-reports/
             -Dsonar.jacoco.reportsPath=target/jacoco.exec
             -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
