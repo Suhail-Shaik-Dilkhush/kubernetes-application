@@ -64,3 +64,41 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: eu-north-1
+
+  Running-EKS:
+    needs: Deploying
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout git
+        uses: actions/checkout@v2
+
+      - name: Fetching kube config file
+        run: |
+          aws eks --region eu-north-1 update-kubeconfig --name vprofile-cluster
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: eu-north-1
+
+      - name: setting up ecr creds
+        run: |
+          aws ecr get-login-password --region eu-north-1 | \
+          kubectl create secret ecr-cred --docker-server=906314669249.dkr.ecr.eu-north-1.amazonaws.com --docker-username=AWS --docker-password-stdin
+
+      - name: setting up docker hub creds
+        run: |
+          kubectl create secret docker-cred --docker-server=https://index.docker.io/v1/ --docker-username=shaiksuhaildocker --docker-password= --docker-email=dilkushsuhail6786@gmail.com
+
+      - name: Creating Helm charts and running the application
+        uses: bitovi/github-actions-deploy-eks-helm@v1.2.12
+        with:
+          kubeconfig: ${{ env.KUBECONFIG }}
+          cluster-name: vprofile-cluster
+          action: install
+          name: vprofile-release
+          namespace: default
+          values: ./vprofile-charts/values.yaml
+          wait: true
+          timeout: 600
+          install: true
+          upgrade: true
