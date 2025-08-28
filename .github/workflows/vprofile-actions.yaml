@@ -86,9 +86,9 @@ jobs:
           secret1=$(kubectl get secret | grep ecr-cred)
           if [ -z "$secret1" ]
           then
-            exit 0
+            kubectl create secret docker-registry ecr-cred --docker-server=906314669249.dkr.ecr.eu-north-1.amazonaws.com --docker-username=AWS --docker-password=$cred
           else
-            kubectl create secret docker-registry ecr-cred --docker-server=906314669249.dkr.ecr.eu-north-1.amazonaws.com --docker-username=AWS --docker-password=$cred 
+             exit 0
           fi
 
         env:
@@ -101,9 +101,9 @@ jobs:
           secret2=$(kubectl get secret | grep docker-cred)
           if [ -z "$secret2" ]
           then
-            exit 0
+            kubectl create secret docker-registry docker-cred --docker-server=https://index.docker.io/v1/ --docker-username=shaiksuhaildocker --docker-password=${{secrets.DOCKER_SECRET}} --docker-email=dilkushsuhail6786@gmail.com
           else
-            kubectl create secret docker-registry docker-cred --docker-server=https://index.docker.io/v1/ --docker-username=shaiksuhaildocker --docker-password=${{secrets.DOCKER_SECRET}} --docker-email=dilkushsuhail6786@gmail.com  
+            exit 0
           fi
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
