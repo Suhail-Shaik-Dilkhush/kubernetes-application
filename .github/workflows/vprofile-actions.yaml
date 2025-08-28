@@ -113,14 +113,13 @@ jobs:
       - name: Creating Helm charts and running the application
         uses: bitovi/github-actions-deploy-eks-helm@v1.2.12
         with:
-          config-files: ${{ env.KUBECONFIG }}
           cluster-name: vprofile-cluster
           action: install
           name: vprofile-release
           namespace: default
           chart-path: ./vprofile-charts
-          values: ./vprofile-charts/values.yaml
-          timeout: 600
+          config-files: ./vprofile-charts/values.yaml
+          timeout: 600s
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
