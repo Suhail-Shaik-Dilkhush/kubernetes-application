@@ -83,7 +83,7 @@ jobs:
       - name: setting up ecr creds
         run: |
           cred=$(aws ecr get-login-password --region eu-north-1)
-          secret1=kubectl get secret | grep ecr-cred
+          secret1=$(kubectl get secret | grep ecr-cred)
           if [ -z "$secret1" ]
           then
             exit 0
@@ -97,7 +97,7 @@ jobs:
       #
       - name: setting up docker hub creds
         run: |
-          secret2=kubectl get secret | grep docker-cred
+          secret2=$(kubectl get secret | grep docker-cred)
           if [ -z "$secret2" ]
           then
             exit 0
