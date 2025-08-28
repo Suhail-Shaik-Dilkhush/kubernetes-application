@@ -16,7 +16,6 @@ spec:
         app: tomcat
     spec:
       containers:
-        - name: ecr-cred
         - name: tomcat
           image: {{.Values.tomcatimage.reponame}}:{{.Values.tomcatimage.imagetag}}
           ports:

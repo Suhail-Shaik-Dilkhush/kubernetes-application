@@ -16,7 +16,6 @@ spec:
         app: mysql
     spec:
       containers:
-        - name: dockerhub-cred 
         - name: mysql
           image: {{.Values.mysqlimage.image}}
           ports:
