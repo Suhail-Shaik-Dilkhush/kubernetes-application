@@ -82,7 +82,7 @@ jobs:
 
       - name: setting up ecr creds
         run: |
-          cred=aws ecr get-login-password --region eu-north-1
+          cred=$(aws ecr get-login-password --region eu-north-1)
           kubectl create secret docker-registry ecr-cred --docker-server=906314669249.dkr.ecr.eu-north-1.amazonaws.com --docker-username=AWS --docker-password=$cred
       #
       - name: setting up docker hub creds
