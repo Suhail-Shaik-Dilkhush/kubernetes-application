@@ -100,13 +100,11 @@ jobs:
       - name: Creating Helm charts and running the application
         uses: bitovi/github-actions-deploy-eks-helm@v1.2.12
         with:
-          kubeconfig: ${{ env.KUBECONFIG }}
+          config-files: ${{ env.KUBECONFIG }}
           cluster-name: vprofile-cluster
           action: install
           name: vprofile-release
           namespace: default
+          chart-path: ./vprofile-charts
           values: ./vprofile-charts/values.yaml
-          wait: true
           timeout: 600
-          install: true
-          upgrade: true
