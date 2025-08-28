@@ -19,7 +19,7 @@ spec:
       imagePullSecrets:
         - name: ecr-cred
         - name: tomcat
-          image: {{.Values.tomcat-image.reponame}}:{{.Values.tomcat-image.imagetag}}
+          image: {{.Values.tomcatimage.reponame}}:{{.Values.tomcatimage.imagetag}}
           ports:
             - name: tomcat-port
               containerPort: 8080

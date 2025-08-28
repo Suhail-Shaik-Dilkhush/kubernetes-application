@@ -126,9 +126,9 @@ tolerations: []
 
 affinity: {}
 
-tomcat-image:
+tomcatimage:
   reponame: "906314669249.dkr.ecr.eu-north-1.amazonaws.com/vprofile/vpro-images"
   imagetag: "vprofile-tomcat-{github.run_number}"
 
-mysql-image:
+mysqlimage:
   image: "shaiksuhaildocker/vprofiledb:latest"
