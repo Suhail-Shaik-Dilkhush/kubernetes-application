@@ -16,7 +16,6 @@ spec:
         app: mysql
     spec:
       containers:
-      imagePullSecrets:
         - name: dockerhub-cred 
         - name: mysql
           image: {{.Values.mysqlimage.image}}
@@ -47,3 +46,5 @@ spec:
         - name: mysql-storage
           persistentVolumeClaim:
             claimName: mysql-pvc
+      imagePullSecrets:
+        - name: dockerhub-cred

@@ -16,7 +16,6 @@ spec:
         app: tomcat
     spec:
       containers:
-      imagePullSecrets:
         - name: ecr-cred
         - name: tomcat
           image: {{.Values.tomcatimage.reponame}}:{{.Values.tomcatimage.imagetag}}
@@ -30,6 +29,8 @@ spec:
             requests:
               cpu: "0.25"
               memory: "256Mi"
+      imagePullSecrets:
+        - name: ecr-cred
       initContainers:
         - name: mysql-wait-container
           image: busybox
