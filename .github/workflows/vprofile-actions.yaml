@@ -99,7 +99,7 @@ jobs:
 
       - name: setting up docker hub creds
         run: |
-          secret2=$(kubectl get secret | grep docker-cred)
+          secret2=$(kubectl get secret --ignore-not-found | grep ecr-cred || true)
           if [ -z "$secret2" ]
           then
             echo "creating docker secret"
