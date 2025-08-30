@@ -83,7 +83,7 @@ jobs:
       - name: setting up ecr creds
         run: |
           cred=$(aws ecr get-login-password --region eu-north-1)
-          secret1=$(kubectl get secret | grep ecr-cred)
+          secret1=$(kubectl get secret --ignore-not-found | grep ecr-cred || true)
           if [ -z "$secret1" ]
           then
             echo "creating ecr secret"
