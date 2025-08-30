@@ -1,0 +1,29 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJUjQydmQ4NU16N013RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TlRBNE1qZ3hOVEE1TlRkYUZ3MHpOVEE0TWpZeE5URTBOVGRhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURWNFBtZnZFYVdXOHhUU21qQXA5LzRRVUZBdGJURFl2U0VIZWh3b1E4QWNjRW9uSC9vNmF5T1FZaWgKdDh4MGpWcU1CVmJvTnBkdE1keGhGYlhsVC9vMmg3bmVXTldmN1RtMHczdmdZMUNrYytCN1BDYlpKNmlDanpFKwp5ZHE2SVhrY29Ec1JqMlg1a3drVFRQdXNpZ2pZY1dLbGFzME50MFEzcnkyUzVKZ0xRTU8zOG5sbDNoWjEvNVRYCnM1SWZQQXJOM21YS1ZXWklyR2VGZE05MEVFdjFjRk5YY0ZBOTRJbm5DekpCS29Ec1hBOE5OVzlJS2FLQjBjK3QKNi95TU1kek5jdW1NOGxoMW9OZlVKeS9JZzYzNk9nN1dYdFA0Mk92Mm5ld3Zxbncxa2s4TmFPMHJpUUphQ3YwVgoyT3lwTG1nUjd4bzBoOXBKdkRsR2Fha2FEeG96QWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJUT0tENnhzNEFicnIxd21WeVczNG1kUU9aZi96QVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQm5pZStTSUN2RQpiS2tyWlp1T0RZSWs0YU5BWXdGenFLOWszYXFUT3ZuMEpvZkZnbEJTV0hRMk1xc0ZzWnlZcW55dCs1SGZqTWNICmwzTTVFSkhVMVYrcWlFU3o5eDB5SVh0QU1OU3FOVEJNMWpSRFp1aVlyRXNPeG10ZmIyOEFGb1ZWZXVIVytsQUQKNklIdXZ6MEU3UUtuMmRBTStXcW5SQjZjaDdTY1dDTFBpRHdGS0doY01KTlNKb01aME5SVWJtcUZiKy9QTitkcwp3TnBuYTNCYVovdmxHNml4eEwrc25raTlKWTBuekRXY0M4WUxoYkVyK1dKRFN4M25ySnlLMERtalViN0hzTmlWCmhlSEk5VTAvZUhTSHczWFlHWkNLc0ZsazF1aUswQ04zcjBJT1JNU01FRzk2L0QrSlVpU2VHZWxnaEVFdmhjZUMKUVFtakd3Q3UwbmViCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://745646F85D57720876014E363749610B.sk1.eu-north-1.eks.amazonaws.com
+  name: arn:aws:eks:eu-north-1:906314669249:cluster/vprofile-cluster
+contexts:
+- context:
+    cluster: arn:aws:eks:eu-north-1:906314669249:cluster/vprofile-cluster
+    user: arn:aws:eks:eu-north-1:906314669249:cluster/vprofile-cluster
+  name: arn:aws:eks:eu-north-1:906314669249:cluster/vprofile-cluster
+current-context: arn:aws:eks:eu-north-1:906314669249:cluster/vprofile-cluster
+kind: Config
+preferences: {}
+users:
+- name: arn:aws:eks:eu-north-1:906314669249:cluster/vprofile-cluster
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - --region
+      - eu-north-1
+      - eks
+      - get-token
+      - --cluster-name
+      - vprofile-cluster
+      - --output
+      - json
+      command: aws

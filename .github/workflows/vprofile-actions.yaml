@@ -86,6 +86,7 @@ jobs:
           secret1=$(kubectl get secret | grep ecr-cred)
           if [ -z "$secret1" ]
           then
+            echo "creating ecr secret"
             kubectl create secret docker-registry ecr-cred --docker-server=906314669249.dkr.ecr.eu-north-1.amazonaws.com --docker-username=AWS --docker-password=$cred
           else
              exit 0
@@ -95,12 +96,13 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: eu-north-1
-      #
+
       - name: setting up docker hub creds
         run: |
           secret2=$(kubectl get secret | grep docker-cred)
           if [ -z "$secret2" ]
           then
+            echo "creating docker secret"
             kubectl create secret docker-registry docker-cred --docker-server=https://index.docker.io/v1/ --docker-username=shaiksuhaildocker --docker-password=${{secrets.DOCKER_SECRET}} --docker-email=dilkushsuhail6786@gmail.com
           else
             exit 0
